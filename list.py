@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+ 
 #License：GPL v3 or higher.
 #Copyright (C) 2012 Biergaizi
  
@@ -40,18 +42,13 @@ print("secret: ",end='')
 while times < secret_list_len:
 	times=times+1
  
-#如果用户输入的移位量大于等于二十六，实际上就是26减去它。
-#比如：移位量27，实际上就是1；移位量是26，实际上就是不移位（0）。
-	if value>=26:
-		value=value-26
- 
 #num实际上就是最终字母的移位量。
-	#这分为几步：
-	#第一步：取出plain这个列表的第某个对象，times为循环次数。第一次循环就处理第一个字母哦！但由于列表从0开始，因此-1。
-	#第二步：alphabet.index用来将用户输入在plain列表的字母，查到alphabet列表对应的位置。
-	#第三步：在这个位置上加上value这个用户设置的移位量。最终的变量将是一个已经移动位置的alphabet列表对象顺序。
+    #这分为几步：
+    #第一步：取出plain这个列表的第某个对象，times为循环次数。第一次循环就处理第一个字母哦！但由于列表从0开始，因此-1。
+    #第二步：alphabet.index用来将用户输入在plain列表的字母，查到alphabet列表对应的位置。
+    #第三步：在这个位置上加上value这个用户设置的移位量。最终的变量将是一个已经移动位置的alphabet列表对象顺序。
  
-	#这个try...except实际上就是：
+    #这个try...except实际上就是：
 	try:
 	#如果这个try完全正常，则说明这是一个小写字母(能在alphabet中找到该字母)，同时不存在列表超出范围(list index out of range)的问题。那么，将密文保存到output。
 		num=int(alphabet.index(plain[times-1])+int(value))
@@ -64,25 +61,25 @@ while times < secret_list_len:
 			output=alphabet_upper[num]
 		except IndexError:
 		#如果发生了IndexError，则说明这是一个大写字母，但是列表超出范围。那么，如果列表是向前超出范围的，将回到后面；亦而反之。这是通过修改num实现的。修正之后，将密文保存到output。
-			while num>25:
-				num=int(num-26)
-			while num<-25:
-				num=int(num+26)
+			if num>25:
+				num=int(num%26)
+			if num<-25:
+				num=int(-(-num%26))
 			output=alphabet_upper[num]
 		except ValueError:
 		#如果发生了ValueError，则说明这不是一个英文字母(无论是alphabet或alphabet_upper都不存在该字母)。那么，这个字符将不会被加密，直接保存到output。
 			output=plain[times-1]
 	except IndexError:
 	#如果发生了IndexError，则说明这是一个小写字母，但是列表超出范围。那么，如果列表是向前超出范围的，将回到后面；亦而反之。这是通过修改num实现的。修正之后，将密文保存到output。
-		while num>25:
-			num=int(num-26)
-		while num<-25:
-			num=int(num+26)
+		if num>25:
+			num=int(num%26)
+		if num<-25:
+			num=int(-(-num%26))
 		output=alphabet[num]
-	
-	#最终，将保存在output中的密文输出。
+ 
+    #最终，将保存在output中的密文输出。
 	print(output,end='')
-	#由于是循环输出，每次都会换行，将导致输出的密文难以阅读。因此用end=''选项不换行。
+    #由于是循环输出，每次都会换行，将导致输出的密文难以阅读。因此用end=''选项不换行。
  
 #由于不换行，最后一行看着很难受，故换一行。
 print("")
