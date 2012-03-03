@@ -1,5 +1,5 @@
 #License：GPL v3 or higher.
-#Copyright (C) 2011 Biergaizi
+#Copyright (C) 2012 Biergaizi
  
 times=0
 plain=input("Please input your plain text: ")

@@ -1,5 +1,5 @@
 #License：GPL v3 or higher.
-#Copyright (C) 2011 Biergaizi
+#Copyright (C) 2012 Biergaizi
  
 #实际上，这个程序是这样的：
 #首先，初始化一个字母表。然后让用户输入一段明文，并将该字符串转换成每个字符为一个对象的列表。
