@@ -20,6 +20,7 @@
 #2012/03/01
 
 #-----------------------------------------------
+import sys
 times=0
  
 #初始化一个字母表
@@ -29,7 +30,11 @@ alphabet_upper=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P',
 plain=input("Please input your plain text: ")
 value=input("Please input your key(included negatives): ")
  
-value=int(value)
+try:
+	value=int(value)
+except ValueError:
+	print("Please input an integer.")
+	sys.exit()
 
 #将用户输入的内容转换为列表，每个字母都是列表中的一个对象。
 secret_list=list(plain)
