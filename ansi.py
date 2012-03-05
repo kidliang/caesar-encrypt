@@ -1,11 +1,19 @@
 #License：GPL v3 or higher.
 #Copyright (C) 2012 Biergaizi
 
+import sys
 times=0
 plain=input("Please input your plain text: ")
 value=input("Please input your key(included negatives): ")
 secret_list=list(plain)
 secret_list_len=len(secret_list)
+
+try:
+	value=int(value)
+except ValueError:
+	print("Please input an integer.")
+	sys.exit()
+
 
 #a的ANSI码是97, z的ANSI码是122。
 #A的ANSI码是65, Z的ANSI码是90。
