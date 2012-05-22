@@ -21,15 +21,14 @@
 
 #-----------------------------------------------
 import sys
-times = 0
 
 #初始化一个字母表
-alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', \
+alphabet = ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', \
         'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', \
-        'x', 'y', 'z']
-alphabet_upper = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',\
+        'x', 'y', 'z')
+alphabet_upper = ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',\
         'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', \
-        'Y', 'Z']
+        'Y', 'Z')
 
 plain = input("Please input your plain text: ")
 value = input("Please input your key(included negatives): ")
@@ -41,13 +40,13 @@ except ValueError:
     sys.exit()
 
 #将用户输入的内容转换为列表，每个字母都是列表中的一个对象。
-secret_list = list(plain)
+secret_tuple = tuple(plain)
 
 print("")
 print('secret: ', end='')
 
 #循环一次就处理一个字母
-for letter in secret_list:
+for letter in secret_tuple:
 
 #num实际上就是最终字母的移位量。
     #这分为几步：
