@@ -42,14 +42,12 @@ except ValueError:
 
 #将用户输入的内容转换为列表，每个字母都是列表中的一个对象。
 secret_list = list(plain)
-secret_list_len = len(secret_list)
 
 print("")
 print('secret: ', end='')
 
 #循环一次就处理一个字母
-while times < secret_list_len:
-    times = times + 1
+for letter in secret_list:
 
 #num实际上就是最终字母的移位量。
     #这分为几步：
@@ -61,14 +59,14 @@ while times < secret_list_len:
     try:
     #如果这个try完全正常，则说明这是一个小写字母(能在alphabet中找到该字母)，同时不存在列表超出范围
     #(list index out of range)的问题。那么，将密文保存到output。
-        num = int(alphabet.index(plain[times - 1]) + int(value))
+        num = int(alphabet.index(letter) + int(value))
         output = alphabet[num]
     except ValueError:
     #如果发生了ValueError，则说明这不是一个小写字母(不能在alphabet中找到该字母)。
         try:
         #如果这个try完全正常，则说明这是一个大写字母(能在alphabet_upper中找到该字母)，
         #同时不存在列表超出范围的问题。那么，将密文保存到output。
-            num = int(alphabet_upper.index(plain[times - 1]) + int(value))
+            num = int(alphabet_upper.index(letter) + int(value))
             output = alphabet_upper[num]
         except IndexError:
         #如果发生了IndexError，则说明这是一个大写字母，但是列表超出范围。那么，
@@ -82,7 +80,7 @@ while times < secret_list_len:
         except ValueError:
         #如果发生了ValueError，则说明这不是一个英文字母(无论是alphabet
         #或alphabet_upper都不存在该字母)。那么，这个字符将不会被加密，直接保存到output。
-            output = plain[times - 1]
+            output = letter
     except IndexError:
     #如果发生了IndexError，则说明这是一个小写字母，但是列表超出范围。那么，
     #如果列表是向前超出范围的，将回到后面；亦而反之。这是通过修改num实现的。修正之后，将密文保存到output。
