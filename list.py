@@ -23,11 +23,8 @@ except ValueError:
     print("Please input an integer.")
     exit()
 
-#将用户输入的内容转换为元组，每个字母都是列表中的一个元组。
-plain_tuple = tuple(plain)
-
-#使用for循环来遍历secret_tuple，一次处理一个明文字符letter。
-for letter in plain_tuple:
+#使用for循环来遍历plain，一次处理一个明文字符letter。
+for letter in plain:
     #如果当前字符为大写字母……
     if letter.isupper() == True:
         #查出letter在大写字母表中的位置，加上用户的密钥，并取除以26的余数，得出实际的移位。
